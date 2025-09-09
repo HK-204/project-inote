@@ -69,8 +69,8 @@ public class UserServlet extends HttpServlet {
 
     private void handleRegister(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        String username = request.getParameter("username").trim();
+        String password = request.getParameter("password").trim();
 
         User u = new User();
         u.setUsername(username);
@@ -86,12 +86,12 @@ public class UserServlet extends HttpServlet {
 
     private void handleLogin(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        String username = request.getParameter("username").trim();
+        String password = request.getParameter("password").trim();
 
         User u = userDAO.getUserByUsername(username);
 
-        if (u != null && u.getPassword().equals(password)) {
+        if (u != null && u.getPassword().trim().equals(password.trim())) {
             HttpSession session = request.getSession();
             session.setAttribute("user", u);
             response.sendRedirect("note?action=list");
