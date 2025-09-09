@@ -24,6 +24,7 @@ public class UserServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new ServletException(e);
         }
+
     }
 
     @Override
