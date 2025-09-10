@@ -30,7 +30,7 @@ public class UserDAO {
 
     // read
     public User getUserById(int id) {
-        String sql = "SELECT user_id, username, password, email, created_at FROM Users WHERE user_id = ?";
+        String sql = "SELECT user_id, username, password, email FROM Users WHERE user_id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
@@ -39,8 +39,7 @@ public class UserDAO {
                         rs.getInt("user_id"),
                         rs.getString("username"),
                         rs.getString("password"),
-                        rs.getString("email"),
-                        rs.getString("created_at")
+                        rs.getString("email")
                 );
             }
         } catch (SQLException e) {
@@ -51,7 +50,7 @@ public class UserDAO {
 
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
-        String sql = "SELECT user_id, username, password, email, created_at FROM Users";
+        String sql = "SELECT user_id, username, password, email FROM Users";
         try (Statement statement = connection.createStatement();
              ResultSet rs = statement.executeQuery(sql)) {
             while (rs.next()) {
@@ -59,8 +58,7 @@ public class UserDAO {
                         rs.getInt("user_id"),
                         rs.getString("username"),
                         rs.getString("password"),
-                        rs.getString("email"),
-                        rs.getString("created_at")
+                        rs.getString("email")
                 ));
             }
         } catch (SQLException e) {
@@ -97,7 +95,7 @@ public class UserDAO {
     }
 
     public User getUserByUsername(String username) {
-        String sql = "SELECT user_id, username, password, email, created_at FROM Users WHERE username = ?";
+        String sql = "SELECT user_id, username, password, email FROM Users WHERE username = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -108,8 +106,7 @@ public class UserDAO {
                             rs.getInt("user_id"),
                             rs.getString("username"),
                             rs.getString("password"),
-                            rs.getString("email"),
-                            rs.getString("created_at")
+                            rs.getString("email")
                     );
                 }
             }

@@ -5,7 +5,6 @@ public class User {
     private String username;
     private String password;
     private String email;
-    private String createdAt;
 
     public User(){}
 
@@ -15,12 +14,11 @@ public class User {
         this.email = email;
     }
 
-    public User(int userId, String username, String password, String email, String createdAt) {
+    public User(int userId, String username, String password, String email) {
         this.userId = userId;
         this.username = username;
         this.password = password;
         this.email = email;
-        this.createdAt = createdAt;
     }
 
     public int getUserId() {
@@ -53,13 +51,5 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
     }
 }
