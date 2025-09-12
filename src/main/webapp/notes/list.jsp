@@ -6,7 +6,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
 <body class="container mt-4">
-    <h2 class="mb-4">Danh sách ghi chú</h2>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">Danh sách ghi chú</h2>
+        <div>
+            <span class="badge bg-info text-dark fs-6">
+                Tổng ghi chú: ${noteCount}
+            </span>
+        </div>
+    </div>
+
 
     <form action="note" method="get" class="d-flex mb-3">
         <input type="hidden" name="action" value="search"/>

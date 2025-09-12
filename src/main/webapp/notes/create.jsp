@@ -18,10 +18,29 @@
         <div class="mb-3">
             <label class="form-label">Nội dung</label>
             <textarea name="content" class="form-control" rows="5" required></textarea>
+            <p id="wordCount" style="position: absolute; bottom: 5px; right: 10px; font-size: 1.5em; color: gray;">
+                Số từ: ${note != null ? note.wordCount : 0}
+            </p>
         </div>
 
         <button type="submit" class="btn btn-primary">Lưu</button>
         <a href="note?action=list" class="btn btn-secondary">Hủy</a>
     </form>
+
+<script>
+    const textarea = document.querySelector('textarea[name="content"]');
+    const wordCountElement = document.getElementById('wordCount');
+
+    function updateWordCount() {
+        const text = textarea.value.trim();
+        const count = text === "" ? 0 : text.split(/\s+/).length;
+        wordCountElement.textContent = "Số từ: " + count;
+    }
+
+    updateWordCount();
+
+    textarea.addEventListener("input", updateWordCount);
+</script>
+
 </body>
 </html>

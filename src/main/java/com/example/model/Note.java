@@ -57,4 +57,11 @@ public class Note {
     public void setCreateAt(String createAt) {
         this.createAt = createAt;
     }
+
+    public int getWordCount() {
+        if (content == null || content.trim().isEmpty()) {
+            return 0;
+        }
+        return content.trim().split("\\s+").length;
+    }
 }

@@ -37,7 +37,7 @@ public class NoteDAO {
     // read - lấy all note của user
     public List<Note> findAllByUser(int userId) {
         List<Note> list = new ArrayList<>();
-        String sql = "SELECT note_id, user_id, title, content, create_at, updated_at FROM Notes WHERE user_id = ? ORDER BY create_at DESC";
+        String sql = "SELECT note_id, user_id, title, content, create_at FROM Notes WHERE user_id = ? ORDER BY create_at DESC";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -61,7 +61,7 @@ public class NoteDAO {
 
     // read - lấy 1 note của user
     public Note findById(int noteId) {
-        String sql = "SELECT note_id, user_id, title, content, create_at, updated_at FROM Notes WHERE note_id = ?";
+        String sql = "SELECT note_id, user_id, title, content, create_at FROM Notes WHERE note_id = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -162,6 +162,15 @@ public class NoteDAO {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public int countWords(String content) {
+        if (content == null || content.trim().isEmpty()) {
+            return 0;
+        }
+
+        String[] words = content.trim().split("\\s+");
+        return words.length;
     }
 
 }

@@ -71,7 +71,10 @@ public class NoteServlet extends HttpServlet {
         }
 
         List<Note> notes = noteDAO.findAllByUser(u.getUserId());
+        int noteCount = noteDAO.countByUser(u.getUserId());
+
         request.setAttribute("notes", notes);
+        request.setAttribute("noteCount", noteCount);
         request.getRequestDispatcher("/notes/list.jsp").forward(request, response);
     }
 
